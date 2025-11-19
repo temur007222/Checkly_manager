@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/white"
+        app:navigationIcon="@drawable/back"
+        app:titleTextColor="@android:color/black"
+        app:title="Add Task" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_task_detail"
+        android:hint="Task Title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/taskTitleInput"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="35dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_task_detail"
+        android:hint="Start Time">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/startTimeInput"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_task_detail"        android:hint="Due Time">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dueTimeInput"
+            android:focusable="false"
+            android:clickable="true"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_task_detail"        android:hint="Notes (optional)">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/notesInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:background="@color/white"
+            android:minLines="3" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="Photo prove required"/>
+
+        <CheckBox
+            android:id="@+id/photoRequiredCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="end"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:background="@drawable/edit_button_design"
+            android:backgroundTint="@android:color/darker_gray"
+            android:textColor="@android:color/white" />
+
+        <View
+            android:id="@+id/deleteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             android:text="Save"
+            android:background="@drawable/delete_button_design"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#FB0000"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>

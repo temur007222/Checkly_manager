@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginScreen">
+
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="com.temurx.checklymanager.ui.LoginScreen"
+        android:label="fragment_login_screen"
+        tools:layout="@layout/fragment_login_screen" >
+        <action
+            android:id="@+id/action_loginScreen_to_staffListFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/staffDetailFragment"
+        android:name="com.temurx.checklymanager.ui.StaffDetailsFragment"
+        android:label="fragment_staff_detail"
+        tools:layout="@layout/fragment_staff_detail" >
+        <action
+            android:id="@+id/action_staffDetailFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_staffDetailFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.temurx.checklymanager.ui.HomeFragment"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_staffListFragment_to_staffDetailFragment"
+            app:destination="@id/staffDetailFragment" />
+        <action
+            android:id="@+id/action_staffListFragment_to_addStaffFragment"
+            app:destination="@id/addStaffFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.temurx.checklymanager.ui.AddTaskFragment"
+        android:label="AddTaskFragment" />
+    <fragment
+        android:id="@+id/addStaffFragment"
+        android:name="com.temurx.checklymanager.ui.AddStaffFragment"
+        android:label="AddStaffFragment" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.temurx.checklymanager.ui.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_staffDetailFragment"
+            app:destination="@id/staffDetailFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_addStaffFragment"
+            app:destination="@id/addStaffFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.temurx.checklymanager.ui.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginScreen"
+            app:destination="@id/loginScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.temurx.checklymanager.ui.TaskDetailFragment"
+        android:label="fragmentTaskDetail"
+        tools:layout="@layout/fragment_task_detail" >
+        <action
+            android:id="@+id/action_taskDetailFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+</navigation>

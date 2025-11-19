@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/staffImage"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        android:src="@mipmap/ic_launcher_round"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_bg"
+        android:layout_marginEnd="12dp" />
+
+    <!-- Staff name + info -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/staffName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ethan Carter"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/staffRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Head Chef"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
+
+    <!-- Task info -->
+    <TextView
+        android:id="@+id/taskInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 tasks"
+        android:textSize="18sp"
+        android:textColor="@android:color/holo_red_dark"/>
+</LinearLayout>

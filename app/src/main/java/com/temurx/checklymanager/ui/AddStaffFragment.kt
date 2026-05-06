@@ -41,6 +41,7 @@ class AddStaffFragment : Fragment() {
         cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
             if (success && imageUri != null) {
                 binding.profilePreview.setImageURI(imageUri)
+                binding.profilePreview.visibility = View.VISIBLE
                 uploadPhotoToStorage(imageUri)
             }
         }
@@ -49,6 +50,7 @@ class AddStaffFragment : Fragment() {
         galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
                 binding.profilePreview.setImageURI(it)
+                binding.profilePreview.visibility = View.VISIBLE
                 uploadPhotoToStorage(it)
             }
         }
@@ -65,10 +67,18 @@ class AddStaffFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Select photo button → show options (gallery or camera)
-        binding.selectPhotoButton.setOnClickListener {
-            showImagePickerDialog()
-        }
+        // Photo upload tile click — primary picker entry point in the new layout
+        binding.photoUploadGroup.setOnClickListener { showImagePickerDialog() }
+        // Legacy hidden button (preserved for binding compat)
+        binding.selectPhotoButton.setOnClickListener { showImagePickerDialog() }
+
+        // Role dropdown adapter (works on minSdk 24+; XML simpleItems requires API 30)
+        val roleAdapter = android.widget.ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            resources.getStringArray(R.array.add_staff_roles)
+        )
+        binding.staffRoleInput.setAdapter(roleAdapter)
 
         binding.toolbar.setOnClickListener {
             findNavController().popBackStack()

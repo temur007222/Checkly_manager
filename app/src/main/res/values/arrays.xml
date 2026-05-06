@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="add_staff_roles">
+        <item>@string/add_staff_role_floor_manager</item>
+        <item>@string/add_staff_role_bartender</item>
+        <item>@string/add_staff_role_server</item>
+        <item>@string/add_staff_role_kitchen</item>
+        <item>@string/add_staff_role_cleaner</item>
+        <item>@string/add_staff_role_manager</item>
+    </string-array>
+</resources>

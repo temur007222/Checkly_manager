@@ -56,8 +56,8 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Toolbar back
-        binding.toolbar.setNavigationOnClickListener {
+        // Toolbar back (toolbar is an ImageView in the redesigned layout)
+        binding.toolbar.setOnClickListener {
             findNavController().popBackStack()
         }
 

@@ -1,12 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Checkly (manager)</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Checkly Manager</string>
+    <string name="brand_wordmark">Checkly</string>
+    <string name="brand_wordmark_sub_manager">Manager</string>
+
+    <!-- Auth -->
+    <string name="auth_welcome_back">Welcome back.</string>
+    <string name="auth_subtitle_manager">Manage your team &amp; shifts</string>
+    <string name="auth_email_label">Email</string>
+    <string name="auth_password_label">Password</string>
+    <string name="auth_email_hint">manager@cafe.uz</string>
+    <string name="auth_password_hint">Enter your password</string>
+    <string name="auth_signin_cta">Sign in</string>
+    <string name="auth_forgot_link">Forgot password?</string>
+    <string name="auth_error_empty_fields">Please enter email and password</string>
+    <string name="auth_error_failed">Login failed: %1$s</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_team">Team</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Home / Staff list -->
+    <string name="home_label_team">Your team</string>
+    <string name="home_count">%1$d people</string>
+    <string name="home_search_hint">Search by name or role…</string>
+    <string name="home_empty_title">Build your team</string>
+    <string name="home_empty_body">Add your first staff member to get started.</string>
+    <string name="home_empty_cta">Add staff</string>
+    <string name="home_overdue_flag">%1$d overdue</string>
+    <string name="home_progress_format">%1$d/%2$d</string>
+
+    <!-- Dashboard -->
+    <string name="dash_label_overview">Overview</string>
+    <string name="dash_filter_daily">Daily</string>
+    <string name="dash_filter_weekly">Weekly</string>
+    <string name="dash_filter_monthly">Monthly</string>
+    <string name="dash_filter_custom">Custom</string>
+    <string name="dash_kpi_on_time">On time</string>
+    <string name="dash_kpi_overdue">Overdue</string>
+    <string name="dash_kpi_done">Done</string>
+    <string name="dash_chart_h">Tasks by status</string>
+    <string name="dash_chart_x_wait">Wait</string>
+    <string name="dash_chart_x_avail">Avail</string>
+    <string name="dash_chart_x_prog">Prog</string>
+    <string name="dash_chart_x_late">Late</string>
+    <string name="dash_chart_x_done">Done</string>
+    <string name="dash_empty_period">No tasks in this range.</string>
+    <string name="dash_period_today">Today</string>
+    <string name="dash_period_week">This week</string>
+    <string name="dash_period_month">This month</string>
+
+    <!-- Staff detail -->
+    <string name="staff_label">Staff</string>
+    <string name="staff_meta_role_joined">%1$s · Joined %2$s</string>
+    <string name="staff_kpi_today">Today</string>
+    <string name="staff_kpi_on_time">On time</string>
+    <string name="staff_kpi_overdue">Overdue</string>
+    <string name="staff_h_today">Today\'s tasks</string>
+    <string name="staff_action_new">+ New</string>
+    <string name="staff_remove_confirm_title">Remove %1$s?</string>
+    <string name="staff_remove_confirm_msg">This will remove the staff member and their account.</string>
+    <string name="staff_remove_action">Remove</string>
+
+    <!-- Add staff -->
+    <string name="add_staff_label">Add</string>
+    <string name="add_staff_h">New staff member</string>
+    <string name="add_staff_photo_cta">Add photo</string>
+    <string name="add_staff_field_name">Full name</string>
+    <string name="add_staff_field_role">Role</string>
+    <string name="add_staff_field_email">Email</string>
+    <string name="add_staff_field_password">Temporary password</string>
+    <string name="add_staff_role_floor_manager">Floor manager</string>
+    <string name="add_staff_role_bartender">Bartender</string>
+    <string name="add_staff_role_server">Server</string>
+    <string name="add_staff_role_kitchen">Kitchen prep</string>
+    <string name="add_staff_role_cleaner">Cleaner</string>
+    <string name="add_staff_role_manager">Manager</string>
+    <string name="add_staff_save">Add</string>
+    <string name="add_staff_validation">All fields are required</string>
+    <string name="add_staff_added_toast">Staff added</string>
+    <string name="add_staff_error">Couldn\'t add staff: %1$s</string>
+    <string name="add_staff_photo_picker_title">Select photo</string>
+    <string name="add_staff_photo_take">Take photo</string>
+    <string name="add_staff_photo_gallery">Choose from gallery</string>
+    <string name="add_staff_photo_uploaded">Photo uploaded</string>
+    <string name="add_staff_photo_failed">Photo upload failed</string>
+
+    <!-- Add / edit task -->
+    <string name="add_task_label">Task</string>
+    <string name="add_task_meta_for">For %1$s</string>
+    <string name="add_task_h_new">New task</string>
+    <string name="add_task_h_edit">Edit task</string>
+    <string name="add_task_field_title">Title</string>
+    <string name="add_task_field_notes">Notes</string>
+    <string name="add_task_field_start">Start</string>
+    <string name="add_task_field_due">Due</string>
+    <string name="add_task_photo_required">Photo required</string>
+    <string name="add_task_photo_required_desc">Staff must upload at least 1 photo</string>
+    <string name="add_task_save">Save</string>
+    <string name="add_task_validation_title">Title required</string>
+    <string name="add_task_validation_start">Pick a start time</string>
+    <string name="add_task_validation_due">Pick a due time</string>
+    <string name="add_task_validation_due_after_start">Due must be after start</string>
+    <string name="add_task_added_toast">Task added</string>
+    <string name="add_task_updated_toast">Task updated</string>
+    <string name="add_task_error">Couldn\'t save task: %1$s</string>
+
+    <!-- Task detail (manager) -->
+    <string name="task_detail_label">Task</string>
+    <string name="task_detail_assignee">%1$s</string>
+    <string name="task_comments_h">Comments · %1$d</string>
+    <string name="task_comments_compose_hint">Write a comment…</string>
+    <string name="task_comments_empty">No comments yet</string>
+    <string name="task_comment_send_error">Couldn\'t send: %1$s</string>
+
+    <!-- Profile -->
+    <string name="profile_label">Profile</string>
+    <string name="profile_role_owner">Owner</string>
+    <string name="profile_restaurant_default">Café Yelken</string>
+    <string name="profile_meta_role_restaurant">%1$s · %2$s</string>
+    <string name="profile_group_account">Account</string>
+    <string name="profile_group_notifications">Notifications</string>
+    <string name="profile_group_theme">Theme</string>
+    <string name="profile_group_language">Language</string>
+    <string name="profile_signout">Sign out</string>
+    <string name="profile_signout_confirm_title">Sign out?</string>
+    <string name="profile_signout_confirm_msg">You\'ll need to sign in again next time.</string>
+    <string name="profile_theme_light">Light</string>
+    <string name="profile_theme_dark">Dark</string>
+    <string name="profile_theme_auto">Auto</string>
+    <string name="profile_lang_uz">Oʻzbekcha</string>
+    <string name="profile_lang_ru">Русский</string>
+    <string name="profile_lang_en">English</string>
+    <string name="profile_version">Checkly Manager · v%1$s</string>
+
+    <!-- Status pills -->
+    <string name="task_status_not_yet">Coming up</string>
+    <string name="task_status_available">Available</string>
+    <string name="task_status_in_progress">In progress</string>
+    <string name="task_status_finished">Finished</string>
+    <string name="task_status_overdue">Overdue</string>
+    <string name="task_pill_photo_required">Photo required</string>
+
+    <!-- Common -->
+    <string name="action_retry">Retry</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="content_desc_back">Back</string>
+    <string name="content_desc_more">More options</string>
+    <string name="content_desc_edit">Edit</string>
+    <string name="content_desc_avatar">Profile photo</string>
+    <string name="content_desc_search">Search</string>
+    <string name="content_desc_send">Send</string>
+    <string name="content_desc_add">Add</string>
+
+    <!-- Legacy/scaffold (kept until layouts are rewritten) -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Existing arrays (preserved from old strings.xml) -->
     <string-array name="time_filters">
         <item>Daily</item>
         <item>Weekly</item>
         <item>Monthly</item>
-        <!--    <item>Custom</item> -->
     </string-array>
 </resources>

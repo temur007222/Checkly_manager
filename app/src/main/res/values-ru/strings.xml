@@ -32,6 +32,7 @@
     <string name="dash_kpi_on_time">Вовремя</string>
     <string name="dash_kpi_overdue">Просрочено</string>
     <string name="dash_kpi_done">Готово</string>
+    <string name="dash_kpi_percent">%1$d%%</string>
     <string name="dash_chart_h">Задачи по статусам</string>
     <string name="dash_chart_x_wait">Ждёт</string>
     <string name="dash_chart_x_avail">Доступно</string>

@@ -36,10 +36,13 @@ class StaffAdapter(
             else -> R.drawable.bg_avatar_c
         }
         holder.binding.staffImage.setBackgroundResource(tintRes)
-        if (staff.photoUrl.isNotBlank() && !staff.photoUrl.contains("pinimg.com")) {
+        // Always try to load the photo URL — Glide handles failure gracefully (transparent error/placeholder lets the avatar tint background show through).
+        if (staff.photoUrl.isNotBlank()) {
             Glide.with(ctx)
                 .load(staff.photoUrl)
                 .centerCrop()
+                .placeholder(android.R.color.transparent)
+                .error(android.R.color.transparent)
                 .into(holder.binding.staffImage)
         } else {
             holder.binding.staffImage.setImageDrawable(null)

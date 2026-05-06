@@ -162,6 +162,7 @@ class DashboardFragment : Fragment() {
                 }
 
                 updateBarChart(statusCount)
+                updateKpis(statusCount)
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error loading tasks", Toast.LENGTH_SHORT).show()
@@ -252,6 +253,17 @@ class DashboardFragment : Fragment() {
             animateY(800)
             invalidate()
         }
+    }
+
+    private fun updateKpis(statusCount: Map<String, Int>) {
+        val done = statusCount[TaskStatus.FINISHED] ?: 0
+        val overdue = statusCount[TaskStatus.OVERDUE] ?: 0
+        val resolved = done + overdue
+        val onTime = if (resolved > 0) (done * 100 / resolved) else 100
+
+        binding.kpiOnTime.text = getString(R.string.dash_kpi_percent, onTime)
+        binding.kpiOverdue.text = overdue.toString()
+        binding.kpiDone.text = done.toString()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

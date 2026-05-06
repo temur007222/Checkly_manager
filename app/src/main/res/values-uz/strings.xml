@@ -32,6 +32,7 @@
     <string name="dash_kpi_on_time">O\'z vaqtida</string>
     <string name="dash_kpi_overdue">Kechikkan</string>
     <string name="dash_kpi_done">Bajarilgan</string>
+    <string name="dash_kpi_percent">%1$d%%</string>
     <string name="dash_chart_h">Vazifalar holati</string>
     <string name="dash_chart_x_wait">Kutmoqda</string>
     <string name="dash_chart_x_avail">Mavjud</string>

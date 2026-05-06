@@ -93,21 +93,27 @@ class StaffDetailsFragment : Fragment() {
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
                         val staff = document.toObject(Staff::class.java)
-                        staff?.let { it ->
-                            binding.staffName.text = it.fullName
+                        staff?.let { s ->
+                            binding.staffName.text = s.fullName
+                            binding.staffRole.text = s.role
 
-                            "${it.role} ${it.punctualityRate}%".also { binding.staffRole.text = it }
-
-                            val createdAt = it.createdAt?.toDate()?.toInstant()?.let {
-                                formatter.format(it)
-                            } ?: "No date"
-
+                            val joinedFormatter = DateTimeFormatter.ofPattern("MMM yyyy")
+                                .withZone(ZoneId.systemDefault())
+                            val createdAt = s.createdAt?.toDate()?.toInstant()?.let {
+                                "Joined ${joinedFormatter.format(it)}"
+                            } ?: ""
                             binding.createdAt.text = createdAt
 
-                            if (it.photoUrl.isNotEmpty()) {
+                            // KPI tiles
+                            binding.kpiToday.text = s.totalTask.toString()
+                            binding.kpiOnTime.text = "${s.punctualityRate ?: 100}%"
+                            binding.kpiOverdue.text = s.overdueCount.toString()
+
+                            if (s.photoUrl.isNotEmpty()) {
                                 Glide.with(this)
-                                    .load(it.photoUrl)
+                                    .load(s.photoUrl)
                                     .placeholder(R.drawable.ic_profile_placeholder)
+                                    .circleCrop()
                                     .into(binding.profileImage)
                             }
                         }
@@ -118,15 +124,24 @@ class StaffDetailsFragment : Fragment() {
                 }
         }
 
-        // 🔹 Real-time Firestore listener for tasks
+        // 🔹 Real-time Firestore listener for tasks — also drives KPI tiles.
         staffId?.let { id ->
             taskListener = db.collection("staff_task")
                 .document(id)
                 .collection("tasks")
                 .addSnapshotListener { snapshot, _ ->
+                    if (_binding == null) return@addSnapshotListener
                     if (snapshot != null) {
                         val tasks = snapshot.toObjects(Task::class.java)
                         taskAdapter.updateTasks(tasks)
+
+                        val now = System.currentTimeMillis()
+                        val overdue = tasks.count { task ->
+                            val due = try { task.dueTime.toDate().time } catch (_: Exception) { 0L }
+                            !task.isCompleted && due in 1 until now
+                        }
+                        binding.kpiToday.text = tasks.size.toString()
+                        binding.kpiOverdue.text = overdue.toString()
                     }
                 }
         }

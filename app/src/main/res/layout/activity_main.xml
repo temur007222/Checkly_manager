@@ -22,8 +22,9 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_bottom_nav"
+        android:layout_height="wrap_content"
         android:background="@color/surface_card"
+        android:minHeight="@dimen/height_bottom_nav"
         app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="@color/bottom_nav_tint"
         app:itemTextColor="@color/bottom_nav_tint"

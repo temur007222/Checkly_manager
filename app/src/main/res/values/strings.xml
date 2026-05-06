@@ -40,6 +40,7 @@
     <string name="dash_kpi_on_time">On time</string>
     <string name="dash_kpi_overdue">Overdue</string>
     <string name="dash_kpi_done">Done</string>
+    <string name="dash_kpi_percent">%1$d%%</string>
     <string name="dash_chart_h">Tasks by status</string>
     <string name="dash_chart_x_wait">Wait</string>
     <string name="dash_chart_x_avail">Avail</string>

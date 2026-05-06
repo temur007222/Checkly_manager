@@ -93,6 +93,8 @@
     <string name="add_task_updated_toast">Задача обновлена</string>
     <string name="add_task_error">Не удалось сохранить: %1$s</string>
     <string name="task_detail_label">Задача</string>
+    <string name="task_time_start">Начало</string>
+    <string name="task_time_due">Срок</string>
     <string name="task_detail_assignee">%1$s</string>
     <string name="task_comments_h">Комментарии · %1$d</string>
     <string name="task_comments_compose_hint">Напишите комментарий…</string>

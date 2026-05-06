@@ -32,6 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.temurx.checklymanager.data.Staff
 import com.temurx.checklymanager.data.Task
+import com.temurx.checklymanager.data.TaskStatus
 import com.temurx.checklymanager.databinding.FragmentDashboardBinding
 import com.temurx.checklymanager.utils.StaffAdapter
 import java.time.DayOfWeek
@@ -142,11 +143,11 @@ class DashboardFragment : Fragment() {
                 }
 
                 val statusCount = mutableMapOf(
-                    "NOT YET AVAILABLE" to 0,
-                    "AVAILABLE" to 0,
-                    "IN PROGRESS" to 0,
-                    "OVERDUE" to 0,
-                    "FINISHED" to 0
+                    TaskStatus.NOT_YET_AVAILABLE to 0,
+                    TaskStatus.AVAILABLE to 0,
+                    TaskStatus.IN_PROGRESS to 0,
+                    TaskStatus.OVERDUE to 0,
+                    TaskStatus.FINISHED to 0
                 )
 
                 for (doc in snapshot.documents) {
@@ -156,8 +157,8 @@ class DashboardFragment : Fragment() {
                         ?.toLocalDate() ?: continue
 
                     if (dueDate.isBefore(startDate) || dueDate.isAfter(endDate)) continue
-                    val status = task.status ?: "UNKNOWN"
-                    statusCount[status] = (statusCount[status] ?: 0) + 1
+                    val canonical = TaskStatus.fromWire(task.status)
+                    statusCount[canonical] = (statusCount[canonical] ?: 0) + 1
                 }
 
                 updateBarChart(statusCount)
@@ -211,7 +212,13 @@ class DashboardFragment : Fragment() {
             return
         }
 
-        val statuses = listOf("NOT YET AVAILABLE", "AVAILABLE", "IN PROGRESS", "OVERDUE", "FINISHED")
+        val statuses = listOf(
+            TaskStatus.NOT_YET_AVAILABLE,
+            TaskStatus.AVAILABLE,
+            TaskStatus.IN_PROGRESS,
+            TaskStatus.OVERDUE,
+            TaskStatus.FINISHED
+        )
         val labels = listOf(
             getString(R.string.dash_chart_x_wait),
             getString(R.string.dash_chart_x_avail),

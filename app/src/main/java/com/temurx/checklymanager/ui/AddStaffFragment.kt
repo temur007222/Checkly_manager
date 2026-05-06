@@ -3,6 +3,7 @@ package com.temurx.checklymanager.ui
 import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -103,6 +104,9 @@ class AddStaffFragment : Fragment() {
 
             val secondaryAuth = FirebaseAuth.getInstance(secondaryApp!!)
 
+            binding.saveButton.isEnabled = false
+            Log.d("AddStaff", "creating user $email")
+
             secondaryAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -117,19 +121,31 @@ class AddStaffFragment : Fragment() {
                                 overdueCount = 0,
                                 createdAt = Timestamp.now()
                             )
+                            Log.d("AddStaff", "auth user created uid=${user.uid}; writing staff_list doc")
 
                             db.collection("staff_list").document(user.uid).set(staff)
                                 .addOnSuccessListener {
-                                    Toast.makeText(requireContext(), getString(R.string.add_staff_added_toast), Toast.LENGTH_SHORT).show()
-                                    findNavController().popBackStack()
+                                    Log.d("AddStaff", "staff_list write success uid=${user.uid}")
+                                    if (_binding != null) {
+                                        Toast.makeText(requireContext(), getString(R.string.add_staff_added_toast), Toast.LENGTH_SHORT).show()
+                                        findNavController().popBackStack()
+                                    }
                                 }
                                 .addOnFailureListener { e ->
-                                    Toast.makeText(requireContext(), getString(R.string.add_staff_error, e.message ?: ""), Toast.LENGTH_SHORT).show()
+                                    Log.e("AddStaff", "staff_list write failed", e)
+                                    if (_binding != null) {
+                                        binding.saveButton.isEnabled = true
+                                        Toast.makeText(requireContext(), getString(R.string.add_staff_error, e.message ?: ""), Toast.LENGTH_LONG).show()
+                                    }
                                 }
                         }
                         secondaryAuth.signOut()
                     } else {
-                        Toast.makeText(requireContext(), getString(R.string.add_staff_error, task.exception?.message ?: ""), Toast.LENGTH_SHORT).show()
+                        Log.e("AddStaff", "auth create failed", task.exception)
+                        if (_binding != null) {
+                            binding.saveButton.isEnabled = true
+                            Toast.makeText(requireContext(), getString(R.string.add_staff_error, task.exception?.message ?: ""), Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
         }

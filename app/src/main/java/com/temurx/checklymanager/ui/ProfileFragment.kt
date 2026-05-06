@@ -59,6 +59,8 @@ class ProfileFragment : Fragment() {
                 .show()
         }
 
+        binding.itemAccount.setOnClickListener { showAccountDialog() }
+        binding.itemNotifications.setOnClickListener { showNotificationsDialog() }
         binding.itemTheme.setOnClickListener { showThemePicker() }
         binding.itemLanguage.setOnClickListener { showLanguagePicker() }
 
@@ -108,6 +110,28 @@ class ProfileFragment : Fragment() {
             .addOnFailureListener {
                 // Silently keep the email-derived defaults; no scary toast.
             }
+    }
+
+    private fun showAccountDialog() {
+        val email = auth.currentUser?.email ?: ""
+        val role = getString(R.string.profile_role_owner)
+        val restaurant = getString(R.string.profile_restaurant_default)
+        val msg = getString(R.string.profile_account_email) + ": " + email + "\n" +
+            getString(R.string.profile_account_role) + ": " + role + "\n" +
+            getString(R.string.profile_account_restaurant) + ": " + restaurant
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.profile_account_title)
+            .setMessage(msg)
+            .setPositiveButton(R.string.profile_account_close, null)
+            .show()
+    }
+
+    private fun showNotificationsDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.profile_notif_title)
+            .setMessage(R.string.profile_notif_msg)
+            .setPositiveButton(R.string.profile_account_close, null)
+            .show()
     }
 
     private fun showThemePicker() {

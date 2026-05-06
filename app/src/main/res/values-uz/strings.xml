@@ -119,6 +119,13 @@
     <string name="profile_lang_ru">Русский</string>
     <string name="profile_lang_en">English</string>
     <string name="profile_version">Checkly Manager · v%1$s</string>
+    <string name="profile_account_title">Akkaunt</string>
+    <string name="profile_account_email">Email</string>
+    <string name="profile_account_role">Lavozim</string>
+    <string name="profile_account_restaurant">Restoran</string>
+    <string name="profile_account_close">Yopish</string>
+    <string name="profile_notif_title">Bildirishnomalar</string>
+    <string name="profile_notif_msg">Yangi vazifalar, izohlar va kechikkan vazifalar uchun push-bildirishnomalar yoqilgan.</string>
     <string name="task_status_not_yet">Yaqinda</string>
     <string name="task_status_available">Mavjud</string>
     <string name="task_status_in_progress">Jarayonda</string>

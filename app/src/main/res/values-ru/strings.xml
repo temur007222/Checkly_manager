@@ -119,6 +119,13 @@
     <string name="profile_lang_ru">Русский</string>
     <string name="profile_lang_en">English</string>
     <string name="profile_version">Checkly Manager · v%1$s</string>
+    <string name="profile_account_title">Аккаунт</string>
+    <string name="profile_account_email">Email</string>
+    <string name="profile_account_role">Роль</string>
+    <string name="profile_account_restaurant">Ресторан</string>
+    <string name="profile_account_close">Закрыть</string>
+    <string name="profile_notif_title">Уведомления</string>
+    <string name="profile_notif_msg">Push-уведомления включены для новых задач, комментариев и просроченных задач.</string>
     <string name="task_status_not_yet">Скоро</string>
     <string name="task_status_available">Доступно</string>
     <string name="task_status_in_progress">В процессе</string>

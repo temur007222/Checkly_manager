@@ -1,126 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@android:color/white"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?android:colorBackground">
 
-    <LinearLayout
+    <ImageView
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center">
+        android:layout_width="@dimen/size_icon_btn"
+        android:layout_height="@dimen/size_icon_btn"
+        android:src="@drawable/ic_back"
+        android:background="@drawable/bg_icon_btn"
+        android:padding="6dp"
+        android:contentDescription="@string/content_desc_back"
+        android:layout_marginStart="@dimen/space_base"
+        android:layout_marginTop="@dimen/space_md"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back"
-            android:padding="8dp"
-            android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/labelStaff"
+        style="@style/TextAppearance.Checkly.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/staff_label"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Tasks"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"
-            android:textSize="20sp"
-            android:layout_marginEnd="50dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/size_avatar_lg"
+        android:layout_height="@dimen/size_avatar_lg"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        android:background="@drawable/bg_avatar_hero"
+        android:contentDescription="@string/content_desc_avatar"
+        android:layout_marginTop="@dimen/space_lg"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/staffName"
+        style="@style/TextAppearance.Checkly.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_md"
+        app:layout_constraintTop_toBottomOf="@id/profileImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Aziza Karimova" />
 
-    <!-- Profile Section -->
+    <TextView
+        android:id="@+id/staffRole"
+        style="@style/TextAppearance.Checkly.BodySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@id/staffName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Floor manager" />
+
+    <TextView
+        android:id="@+id/createdAt"
+        style="@style/TextAppearance.Checkly.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/staffRole"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Joined Apr 2026" />
+
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/profileImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_background"
-            android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/CircleImageView"
-            android:background="@drawable/circle_bg"
-            android:contentDescription="Profile Picture" />
-
-        <TextView
-            android:id="@+id/staffName"
-            android:layout_marginTop="12dp"
-            android:text="Ethan Carter"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/staffRole"
-            android:layout_marginTop="4dp"
-            android:text="Head Chef"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:id="@+id/kpiRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/space_base"
+        android:layout_marginTop="@dimen/space_lg"
+        app:layout_constraintTop_toBottomOf="@id/createdAt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/space_sm"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/elev_card"
+            android:padding="@dimen/space_md"
             android:gravity="center">
 
             <TextView
-                android:text="Part of us from: "
-                android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"
+                android:id="@+id/kpiToday"
+                style="@style/TextAppearance.Checkly.Headline"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:text="8" />
 
             <TextView
-                android:id="@+id/createdAt"
-                android:text="19.09.2025"
-                android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"
+                style="@style/TextAppearance.Checkly.Label"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/staff_kpi_today" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/space_sm"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/elev_card"
+            android:padding="@dimen/space_md"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/kpiOnTime"
+                style="@style/TextAppearance.Checkly.Headline"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="94%" />
+
+            <TextView
+                style="@style/TextAppearance.Checkly.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/staff_kpi_on_time" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/elev_card"
+            android:padding="@dimen/space_md"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/kpiOverdue"
+                style="@style/TextAppearance.Checkly.Headline"
+                android:textSize="20sp"
+                android:textColor="@color/danger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2" />
+
+            <TextView
+                style="@style/TextAppearance.Checkly.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/staff_kpi_overdue" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tasksHeader"
+        style="@style/TextAppearance.Checkly.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tasks"
-        android:layout_marginHorizontal="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:text="@string/staff_h_today"
+        android:layout_marginStart="@dimen/space_base"
+        android:layout_marginTop="@dimen/space_lg"
+        app:layout_constraintTop_toBottomOf="@id/kpiRow"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Task List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
-        android:layout_margin="16dp"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_marginTop="@dimen/space_sm"
+        android:paddingHorizontal="@dimen/space_base"
+        android:paddingBottom="@dimen/space_2xl"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/tasksHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Floating Add Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addTaskFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="24dp"
-        app:backgroundTint="@color/red"
-        app:srcCompat="@drawable/outline_add_24"
-        android:contentDescription="Add Task" />
+        android:layout_width="@dimen/size_fab"
+        android:layout_height="@dimen/size_fab"
+        android:layout_margin="@dimen/space_base"
+        app:backgroundTint="@color/primary"
+        app:srcCompat="@drawable/ic_plus"
+        app:tint="@color/text_on_primary"
+        app:elevation="@dimen/elev_fab"
+        android:contentDescription="@string/content_desc_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

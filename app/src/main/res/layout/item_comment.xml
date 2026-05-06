@@ -1,62 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="12dp">
+    android:background="@drawable/bg_card"
+    android:padding="@dimen/space_md"
+    android:layout_marginVertical="@dimen/space_xs"
+    android:elevation="@dimen/elev_card">
 
-    <!-- Avatar -->
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/commentAvatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_profile_placeholder"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/circle_background"
-        android:clipToOutline="true" />
+        android:background="@drawable/bg_avatar_a"
+        android:contentDescription="@string/content_desc_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Content -->
-    <LinearLayout
+    <TextView
+        android:id="@+id/commentAuthor"
+        style="@style/TextAppearance.Checkly.BodySmall"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_marginStart="@dimen/space_sm"
+        app:layout_constraintTop_toTopOf="@id/commentAvatar"
+        app:layout_constraintBottom_toBottomOf="@id/commentAvatar"
+        app:layout_constraintStart_toEndOf="@id/commentAvatar"
+        app:layout_constraintEnd_toStartOf="@id/commentTime"
+        tools:text="Aziza" />
 
-        <!-- Name + Time -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/commentTime"
+        style="@style/TextAppearance.Checkly.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/commentAvatar"
+        app:layout_constraintBottom_toBottomOf="@id/commentAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="09:14" />
 
-            <TextView
-                android:id="@+id/commentAuthor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sarah M."
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/commentText"
+        style="@style/TextAppearance.Checkly.BodySmall"
+        android:textColor="@color/text_primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xs"
+        app:layout_constraintTop_toBottomOf="@id/commentAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Found 2 broken bottles, threw them out." />
 
-            <TextView
-                android:id="@+id/commentTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="2h ago"
-                android:textSize="12sp"
-                android:textColor="#8A8A8A" />
-        </LinearLayout>
-
-        <!-- Comment Text -->
-        <TextView
-            android:id="@+id/commentText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Initial inventory count completed. Discrepancies found in the electronics section."
-            android:textSize="14sp"
-            android:layout_marginTop="2dp"
-            android:textColor="@android:color/black" />
-
-    </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:padding="12dp"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_left_accent"
+    android:layout_marginVertical="@dimen/space_xs"
+    android:padding="@dimen/space_md"
+    android:elevation="@dimen/elev_card"
+    android:foreground="?attr/selectableItemBackground">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_weight="1"
+    <TextView
+        android:id="@+id/taskTitle"
+        style="@style/TextAppearance.Checkly.Title"
         android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/taskStatusIcon"
+        tools:text="Prepare ingredients" />
 
-        <TextView
-            android:id="@+id/taskTitle"
-            android:text="Prepare Ingredients"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/taskDue"
+        style="@style/TextAppearance.Checkly.Caption"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xs"
+        app:layout_constraintTop_toBottomOf="@id/taskTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/taskStatusIcon"
+        tools:text="Due 10:00 AM" />
 
-        <TextView
-            android:id="@+id/taskDue"
-            android:text="Due 10:00 AM"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <!-- Status Icon -->
     <ImageView
         android:id="@+id/taskStatusIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_check"
-        android:contentDescription="Task Status" />
-</LinearLayout>
+        app:tint="@color/success"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

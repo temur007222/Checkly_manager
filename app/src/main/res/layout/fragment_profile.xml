@@ -1,106 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:background="@color/white"
+    android:background="?android:colorBackground"
     tools:context=".ui.ProfileFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="Checkly"
-        android:layout_gravity="center"
-        android:gravity="center"/>
-
-    <LinearLayout
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:padding="@dimen/space_base">
+
+        <TextView
+            style="@style/TextAppearance.Checkly.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_label"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_md" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profileImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/size_avatar_lg"
+            android:layout_height="@dimen/size_avatar_lg"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/CircleImageView"
-            android:background="@drawable/circle_bg"
-            android:contentDescription="Profile Picture" />
+            android:background="@drawable/bg_avatar_hero"
+            android:contentDescription="@string/content_desc_avatar"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_lg" />
 
         <TextView
             android:id="@+id/staffName"
-            android:layout_marginTop="12dp"
-            android:text="Ethan Carter"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
+            style="@style/TextAppearance.Checkly.Headline"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_md"
+            tools:text="Murod Tursunov" />
 
         <TextView
             android:id="@+id/staffRole"
-            android:layout_marginTop="4dp"
-            android:text="Head Chef"
-            android:textSize="16sp"
-            android:textColor="@android:color/darker_gray"
+            style="@style/TextAppearance.Checkly.BodySmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="2dp"
+            tools:text="Owner · Café Yelken" />
+
+        <TextView
+            android:id="@+id/createdAt"
+            style="@style/TextAppearance.Checkly.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:text="murod@cafe.uz" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            android:gravity="center">
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/elev_card"
+            android:layout_marginTop="@dimen/space_lg">
 
-            <TextView
-                android:text="With us: "
-                android:textSize="16sp"
-                android:textColor="@android:color/darker_gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/itemAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/space_md"
+                android:foreground="?attr/selectableItemBackground">
 
-            <TextView
-                android:id="@+id/createdAt"
-                android:text="19.09.2023"
-                android:textSize="16sp"
-                android:textColor="@android:color/darker_gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_account"
+                    app:tint="@color/primary"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/TextAppearance.Checkly.Title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_md"
+                    android:text="@string/profile_group_account" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_muted"
+                    android:contentDescription="@null" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:id="@+id/itemNotifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/space_md"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_notification"
+                    app:tint="@color/primary"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/TextAppearance.Checkly.Title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_md"
+                    android:text="@string/profile_group_notifications" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_muted"
+                    android:contentDescription="@null" />
+            </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/elev_card"
+            android:layout_marginTop="@dimen/space_md">
+
+            <LinearLayout
+                android:id="@+id/itemTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/space_md"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_theme"
+                    app:tint="@color/primary"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/TextAppearance.Checkly.Title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_md"
+                    android:text="@string/profile_group_theme" />
+
+                <TextView
+                    android:id="@+id/themeValue"
+                    style="@style/TextAppearance.Checkly.BodySmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_theme_auto" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:id="@+id/itemLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/space_md"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_language"
+                    app:tint="@color/primary"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/TextAppearance.Checkly.Title"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_md"
+                    android:text="@string/profile_group_language" />
+
+                <TextView
+                    android:id="@+id/languageValue"
+                    style="@style/TextAppearance.Checkly.BodySmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_lang_uz" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_md"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/elev_card"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginTop="@dimen/space_md">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_signout"
+                app:tint="@color/primary"
+                android:contentDescription="@null" />
+
+            <TextView
+                style="@style/TextAppearance.Checkly.Title"
+                android:textColor="@color/primary"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_md"
+                android:text="@string/profile_signout" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/versionLabel"
+            style="@style/TextAppearance.Checkly.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_lg"
+            android:layout_marginBottom="@dimen/space_md"
+            tools:text="Checkly Manager · v1.0" />
+
     </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Change Information"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="@color/black"
-        android:background="@drawable/edit_text_task_detail"/>
-
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="@color/white"
-        android:background="@drawable/delete_button_design"/>
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

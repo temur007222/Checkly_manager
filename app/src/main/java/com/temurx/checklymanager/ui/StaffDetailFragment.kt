@@ -104,10 +104,8 @@ class StaffDetailsFragment : Fragment() {
                             } ?: ""
                             binding.createdAt.text = createdAt
 
-                            // KPI tiles
-                            binding.kpiToday.text = s.totalTask.toString()
+                            // KPI tiles — kpiToday/kpiOverdue come from the live tasks listener.
                             binding.kpiOnTime.text = "${s.punctualityRate ?: 100}%"
-                            binding.kpiOverdue.text = s.overdueCount.toString()
 
                             if (s.photoUrl.isNotEmpty()) {
                                 Glide.with(this)

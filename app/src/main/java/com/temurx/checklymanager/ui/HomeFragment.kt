@@ -73,6 +73,7 @@ class HomeFragment : Fragment() {
 
                 if (snapshot != null) {
                     staffList.clear()
+                    binding.heroCount.text = getString(R.string.home_count, snapshot.size())
 
                     for (doc in snapshot.documents) {
                         val staff = doc.toObject(Staff::class.java)?.copy(staffId = doc.id)

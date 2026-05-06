@@ -1,55 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentHome">
+    android:background="?android:colorBackground">
 
-    <!-- Main content -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+    <TextView
+        android:id="@+id/labelTeam"
+        style="@style/TextAppearance.Checkly.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_label_team"
+        android:layout_marginStart="@dimen/space_base"
+        android:layout_marginTop="@dimen/space_lg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="Checkly"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginBottom="8dp"/>
-        <!-- RecyclerView for staff list -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/staffRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_staff"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/heroCount"
+        style="@style/TextAppearance.Checkly.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_base"
+        android:layout_marginTop="@dimen/space_xs"
+        app:layout_constraintTop_toBottomOf="@id/labelTeam"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="5 people" />
 
-    <!-- Progress bar overlay -->
+    <EditText
+        android:id="@+id/searchInput"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_input"
+        android:background="@drawable/bg_input_card"
+        android:elevation="@dimen/elev_card"
+        android:inputType="text"
+        android:hint="@string/home_search_hint"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_muted"
+        android:fontFamily="@font/inter"
+        android:textSize="13sp"
+        android:paddingHorizontal="@dimen/space_md"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/space_sm"
+        android:layout_marginHorizontal="@dimen/space_base"
+        android:layout_marginTop="@dimen/space_md"
+        app:layout_constraintTop_toBottomOf="@id/heroCount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/staffRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_md"
+        android:paddingHorizontal="@dimen/space_base"
+        android:paddingBottom="@dimen/space_base"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_staff"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/searchInput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:indeterminateTint="@color/primary"
+        app:layout_constraintTop_toBottomOf="@id/searchInput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addStaffFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:backgroundTint="#FB0000"
-        android:layout_margin="20dp"
-        app:srcCompat="@android:drawable/ic_input_add"
-        app:tint="@android:color/white"
-        android:contentDescription="Add Staff"/>
-</FrameLayout>
+        android:layout_width="@dimen/size_fab"
+        android:layout_height="@dimen/size_fab"
+        android:layout_margin="@dimen/space_base"
+        app:backgroundTint="@color/primary"
+        app:srcCompat="@drawable/ic_plus"
+        app:tint="@color/text_on_primary"
+        app:elevation="@dimen/elev_fab"
+        android:contentDescription="@string/content_desc_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

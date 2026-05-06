@@ -1,52 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    android:gravity="center_vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:layout_marginVertical="@dimen/space_xs"
+    android:padding="@dimen/space_md"
+    android:elevation="@dimen/elev_card"
+    android:foreground="?attr/selectableItemBackground">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/staffImage"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="@dimen/size_avatar_sm"
+        android:layout_height="@dimen/size_avatar_sm"
         app:shapeAppearanceOverlay="@style/CircleImageView"
-        android:src="@mipmap/ic_launcher_round"
         android:scaleType="centerCrop"
-        android:background="@drawable/circle_bg"
-        android:layout_marginEnd="12dp" />
+        android:background="@drawable/bg_avatar_a"
+        android:contentDescription="@string/content_desc_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Staff name + info -->
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/staffName"
+        style="@style/TextAppearance.Checkly.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_marginStart="@dimen/space_md"
+        app:layout_constraintTop_toTopOf="@id/staffImage"
+        app:layout_constraintStart_toEndOf="@id/staffImage"
+        app:layout_constraintEnd_toStartOf="@id/taskInfo"
+        tools:text="Aziza Karimova" />
 
-        <TextView
-            android:id="@+id/staffName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ethan Carter"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/staffRole"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Head Chef"
-            android:textSize="16sp"
-            android:textColor="@android:color/darker_gray"/>
-    </LinearLayout>
-
-    <!-- Task info -->
     <TextView
-        android:id="@+id/taskInfo"
+        android:id="@+id/staffRole"
+        style="@style/TextAppearance.Checkly.BodySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_md"
+        app:layout_constraintTop_toBottomOf="@id/staffName"
+        app:layout_constraintStart_toEndOf="@id/staffImage"
+        app:layout_constraintEnd_toStartOf="@id/taskInfo"
+        tools:text="Floor manager" />
+
+    <TextView
+        android:id="@+id/staffOverdueFlag"
+        style="@style/TextAppearance.Checkly.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3 tasks"
+        android:background="@drawable/pill_status_overdue"
+        android:textColor="@color/text_on_primary"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/space_md"
+        android:layout_marginTop="@dimen/space_xs"
+        app:layout_constraintTop_toBottomOf="@id/staffRole"
+        app:layout_constraintStart_toEndOf="@id/staffImage"
+        tools:text="2 overdue"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/taskInfo"
+        style="@style/TextAppearance.Checkly.Headline"
         android:textSize="18sp"
-        android:textColor="@android:color/holo_red_dark"/>
-</LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="12" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

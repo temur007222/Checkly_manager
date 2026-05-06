@@ -17,6 +17,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
+import com.temurx.checklymanager.R
 import com.temurx.checklymanager.data.Staff
 import com.temurx.checklymanager.databinding.FragmentAddStaffBinding
 import java.io.File
@@ -81,7 +82,7 @@ class AddStaffFragment : Fragment() {
             val password = binding.staffPasswordInput.text.toString().trim()
 
             if (name.isEmpty() || role.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.add_staff_validation), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -109,16 +110,16 @@ class AddStaffFragment : Fragment() {
 
                             db.collection("staff_list").document(user.uid).set(staff)
                                 .addOnSuccessListener {
-                                    Toast.makeText(requireContext(), "Staff added", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(requireContext(), getString(R.string.add_staff_added_toast), Toast.LENGTH_SHORT).show()
                                     findNavController().popBackStack()
                                 }
                                 .addOnFailureListener { e ->
-                                    Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(requireContext(), getString(R.string.add_staff_error, e.message ?: ""), Toast.LENGTH_SHORT).show()
                                 }
                         }
                         secondaryAuth.signOut()
                     } else {
-                        Toast.makeText(requireContext(), "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(R.string.add_staff_error, task.exception?.message ?: ""), Toast.LENGTH_SHORT).show()
                     }
                 }
         }
@@ -130,9 +131,12 @@ class AddStaffFragment : Fragment() {
     }
 
     private fun showImagePickerDialog() {
-        val options = arrayOf("Take Photo", "Choose from Gallery")
+        val options = arrayOf(
+            getString(R.string.add_staff_photo_take),
+            getString(R.string.add_staff_photo_gallery)
+        )
         AlertDialog.Builder(requireContext())
-            .setTitle("Select Photo")
+            .setTitle(getString(R.string.add_staff_photo_picker_title))
             .setItems(options) { _, which ->
                 when (which) {
                     0 -> openCamera()
@@ -159,11 +163,11 @@ class AddStaffFragment : Fragment() {
             .addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener { uri ->
                     photoUrl = uri.toString()
-                    Toast.makeText(requireContext(), "Photo uploaded", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.add_staff_photo_uploaded), Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Upload failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.add_staff_photo_failed), Toast.LENGTH_SHORT).show()
             }
     }
 

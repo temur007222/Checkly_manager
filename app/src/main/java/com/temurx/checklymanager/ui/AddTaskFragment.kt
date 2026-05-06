@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.temurx.checklymanager.R
 import com.temurx.checklymanager.databinding.FragmentAddTaskBinding
 import com.temurx.checklymanager.data.Task
 import java.time.ZoneId
@@ -90,17 +91,17 @@ class AddTaskFragment : Fragment() {
         val notes = binding.notesInput.text.toString().trim()
 
         if (title.isEmpty()) {
-            Toast.makeText(requireContext(), "Task title is required", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.add_task_validation_title), Toast.LENGTH_SHORT).show()
             return
         }
 
         if ( selectedStartTime == null) {
-            Toast.makeText(requireContext(), "Please select start time", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.add_task_validation_start), Toast.LENGTH_SHORT).show()
             return
         }
 
         if (selectedDueTime == null) {
-            Toast.makeText(requireContext(), "Please select due time", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.add_task_validation_due), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -130,11 +131,11 @@ class AddTaskFragment : Fragment() {
 
         taskDocRef.set(task)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Task added", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.add_task_added_toast), Toast.LENGTH_SHORT).show()
                 findNavController().popBackStack()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.add_task_error, e.message ?: ""), Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -155,11 +156,11 @@ class AddTaskFragment : Fragment() {
             .document(taskId)
             .update(updates)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Task updated", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.add_task_updated_toast), Toast.LENGTH_SHORT).show()
                 findNavController().popBackStack()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.add_task_error, e.message ?: ""), Toast.LENGTH_SHORT).show()
             }
     }
 

@@ -207,12 +207,18 @@ class DashboardFragment : Fragment() {
         val total = statusCount.values.sum()
         if (total == 0) {
             binding.barChart.clear()
-            binding.barChart.setNoDataText("No tasks for selected period")
+            binding.barChart.setNoDataText(getString(R.string.dash_empty_period))
             return
         }
 
         val statuses = listOf("NOT YET AVAILABLE", "AVAILABLE", "IN PROGRESS", "OVERDUE", "FINISHED")
-        val labels = listOf("Not Avail", "Avail", "In Prog", "Overdue", "Finished") // X-axis labels
+        val labels = listOf(
+            getString(R.string.dash_chart_x_wait),
+            getString(R.string.dash_chart_x_avail),
+            getString(R.string.dash_chart_x_prog),
+            getString(R.string.dash_chart_x_late),
+            getString(R.string.dash_chart_x_done)
+        ) // X-axis labels
         val entries = ArrayList<BarEntry>()
 
         statuses.forEachIndexed { index, status ->

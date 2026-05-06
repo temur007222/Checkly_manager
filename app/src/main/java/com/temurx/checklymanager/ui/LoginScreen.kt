@@ -38,7 +38,7 @@ class LoginScreen : Fragment() {
             val password = binding.loginPw.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Enter email and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.auth_error_empty_fields), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -52,7 +52,7 @@ class LoginScreen : Fragment() {
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Login failed: ${task.exception?.message}",
+                            getString(R.string.auth_error_failed, task.exception?.message ?: ""),
                             Toast.LENGTH_LONG
                         ).show()
                     }

@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.temurx.checklymanager.R
 import com.temurx.checklymanager.data.Staff
 import com.temurx.checklymanager.databinding.FragmentProfileBinding
+import com.temurx.checklymanager.utils.DemoSeeder
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
@@ -45,6 +46,11 @@ class ProfileFragment : Fragment() {
                 .getPackageInfo(requireContext().packageName, 0).versionName ?: "1.0"
         } catch (_: Exception) { "1.0" }
         binding.versionLabel.text = getString(R.string.profile_version, versionName)
+
+        binding.versionLabel.setOnLongClickListener {
+            confirmAndSeedDemoTasks()
+            true
+        }
 
         binding.btnLogOut.setOnClickListener {
             AlertDialog.Builder(requireContext())
@@ -195,6 +201,43 @@ class ProfileFragment : Fragment() {
             tag.startsWith("uz") -> getString(R.string.profile_lang_uz)
             else -> getString(R.string.profile_lang_uz)
         }
+    }
+
+    private fun confirmAndSeedDemoTasks() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Seed demo tasks?")
+            .setMessage("Adds 6 sample tasks (covering all status + photo scenarios) to every staff member in this restaurant. Existing tasks are kept.")
+            .setPositiveButton("Seed") { _, _ -> runSeed() }
+            .setNegativeButton(R.string.action_cancel, null)
+            .show()
+    }
+
+    private fun runSeed() {
+        val ctx = context ?: return
+        val progress = AlertDialog.Builder(ctx)
+            .setTitle("Seeding demo tasks…")
+            .setMessage("Starting…")
+            .setCancelable(false)
+            .create()
+        progress.show()
+
+        DemoSeeder.seedAllStaff(
+            onProgress = { current, total ->
+                if (_binding != null) progress.setMessage("Staff $current of $total")
+            },
+            onDone = { total ->
+                progress.dismiss()
+                if (_binding != null) {
+                    Toast.makeText(requireContext(), "Seeded $total demo tasks", Toast.LENGTH_LONG).show()
+                }
+            },
+            onError = { e ->
+                progress.dismiss()
+                if (_binding != null) {
+                    Toast.makeText(requireContext(), "Seed failed: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            },
+        )
     }
 
     override fun onDestroyView() {

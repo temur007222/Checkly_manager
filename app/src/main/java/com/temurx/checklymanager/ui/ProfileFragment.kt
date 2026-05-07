@@ -47,6 +47,7 @@ class ProfileFragment : Fragment() {
         } catch (_: Exception) { "1.0" }
         binding.versionLabel.text = getString(R.string.profile_version, versionName)
 
+        binding.versionLabel.setOnClickListener { confirmAndSeedDemoTasks() }
         binding.versionLabel.setOnLongClickListener {
             confirmAndSeedDemoTasks()
             true

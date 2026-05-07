@@ -2,6 +2,8 @@ package com.temurx.checklymanager.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +30,8 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: StaffAdapter
     private val db = FirebaseFirestore.getInstance()
     private val staffList = mutableListOf<Staff>()
+    private val fullList = mutableListOf<Staff>()
+    private var currentQuery: String = ""
 
     private var staffListener: ListenerRegistration? = null
 
@@ -49,6 +53,15 @@ class HomeFragment : Fragment() {
         binding.addStaffFab.setOnClickListener {
             findNavController().navigate(R.id.addStaffFragment)
         }
+
+        binding.searchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                currentQuery = s?.toString().orEmpty().trim()
+                applyFilter()
+            }
+        })
 
         fetchStaff()
 
@@ -72,7 +85,7 @@ class HomeFragment : Fragment() {
                 }
 
                 if (snapshot != null) {
-                    staffList.clear()
+                    fullList.clear()
                     binding.heroCount.text = getString(R.string.home_count, snapshot.size())
 
                     for (doc in snapshot.documents) {
@@ -98,8 +111,8 @@ class HomeFragment : Fragment() {
                                         }
                                         !task.isCompleted && dueTimeMillis < now
                                     }
-                                    staffList.add(staff)
-                                    adapter.notifyDataSetChanged()
+                                    fullList.add(staff)
+                                    applyFilter()
                                 }
                                 .addOnFailureListener { ex ->
                                     Log.e(
@@ -114,6 +127,20 @@ class HomeFragment : Fragment() {
                     Log.w("Firestore", "No staff data found")
                 }
             }
+    }
+
+    private fun applyFilter() {
+        if (_binding == null) return
+        val q = currentQuery.lowercase()
+        staffList.clear()
+        if (q.isEmpty()) {
+            staffList.addAll(fullList)
+        } else {
+            staffList.addAll(fullList.filter {
+                it.fullName.lowercase().contains(q) || it.role.lowercase().contains(q)
+            })
+        }
+        adapter.notifyDataSetChanged()
     }
 
     override fun onDestroyView() {

@@ -1,0 +1,47 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthed() {
+      return request.auth != null;
+    }
+
+    // Staff directory — every authenticated user (manager + staff) can read.
+    // Writes (add/edit/remove staff) are gated to authenticated users; tighten
+    // to a custom claim like `request.auth.token.role == "manager"` once roles
+    // are in place.
+    match /staff_list/{staffId} {
+      allow read:   if isAuthed();
+      allow write:  if isAuthed();
+    }
+
+    // Per-staff task collection. Any authenticated user can read; writes are
+    // also gated to authenticated users so managers can create/edit and the
+    // staff member themselves can flip status / upload photos.
+    match /staff_task/{staffId} {
+      allow read, write: if isAuthed();
+
+      match /tasks/{taskId} {
+        allow read, write: if isAuthed();
+
+        // Comments under a task — this is the path that previously hit
+        // PERMISSION_DENIED. Allow any authenticated user to read and create
+        // comments on tasks they can see; let the comment author update or
+        // delete their own comment.
+        match /comments/{commentId} {
+          allow read:   if isAuthed();
+          allow create: if isAuthed()
+            && request.resource.data.authorId == request.auth.uid;
+          allow update, delete: if isAuthed()
+            && resource.data.authorId == request.auth.uid;
+        }
+      }
+    }
+
+    // Default deny — anything not matched above is rejected.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
